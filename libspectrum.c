@@ -442,6 +442,8 @@ libspectrum_identify_file_raw( libspectrum_id_t *type, const char *filename,
       { LIBSPECTRUM_ID_SNAPSHOT_Z80,  "slt", 3, "\0\0",		    6, 2, 1 },
       { LIBSPECTRUM_ID_SNAPSHOT_ZXS,  "zxs", 3, "SNAP",		    8, 4, 4 },
       { LIBSPECTRUM_ID_SNAPSHOT_PLUSD,"mgtsnp", 3, NULL,	    0, 0, 0 },
+      { LIBSPECTRUM_ID_SNAPSHOT_EZX,  "ezx", 3, "Emuz",		    0, 4, 4 },
+      { LIBSPECTRUM_ID_SNAPSHOT_EZX,  "ezx", 3, "EZX",		    0, 3, 3 },
 
       { LIBSPECTRUM_ID_CARTRIDGE_DCK, "dck", 3, NULL,		    0, 0, 0 },
       { LIBSPECTRUM_ID_CARTRIDGE_IF2, "rom", 3, NULL,		    0, 0, 0 },
@@ -635,6 +637,7 @@ libspectrum_identify_class( libspectrum_class_t *libspectrum_class,
   case LIBSPECTRUM_ID_RECORDING_RZX:
     *libspectrum_class = LIBSPECTRUM_CLASS_RECORDING; return 0;
 
+  case LIBSPECTRUM_ID_SNAPSHOT_EZX:
   case LIBSPECTRUM_ID_SNAPSHOT_PLUSD:
   case LIBSPECTRUM_ID_SNAPSHOT_SNA:
   case LIBSPECTRUM_ID_SNAPSHOT_SNP:

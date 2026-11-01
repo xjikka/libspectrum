@@ -212,6 +212,9 @@ libspectrum_error
 libspectrum_plusd_read( libspectrum_snap *snap,
 			const libspectrum_byte *buffer, size_t buffer_length );
 libspectrum_error
+libspectrum_ezx_read( libspectrum_snap *snap, const libspectrum_byte *buffer,
+                      size_t length );
+libspectrum_error
 internal_sna_read( libspectrum_snap *snap,
 		   const libspectrum_byte *buffer, size_t buffer_length );
 libspectrum_error

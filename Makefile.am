@@ -47,6 +47,7 @@ libspectrum_la_SOURCES = bzip2.c \
 			 pzx_write_validate.c \
 			 rzx.c \
 			 sna.c \
+			 ezx.c \
 			 snp.c \
 			 dsnap.c \
 			 snapshot.c \

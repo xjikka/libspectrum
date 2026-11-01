@@ -263,6 +263,7 @@ typedef enum libspectrum_id_t {
 
   /* Below here, present only in FUTURE version */
   LIBSPECTRUM_ID_SNAPSHOT_DSNAP,		/* .S snapshot (D40/D80) */
+  LIBSPECTRUM_ID_SNAPSHOT_EZX,		/* .ezx snapshot (EmuZWin) */
 
 } libspectrum_id_t;
 
