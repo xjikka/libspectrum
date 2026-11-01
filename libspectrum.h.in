@@ -255,6 +255,10 @@ typedef enum libspectrum_id_t {
 
   LIBSPECTRUM_ID_SCREEN_MLT,		/* .mlt screen file */
 
+  /* XJ extension */
+
+  LIBSPECTRUM_ID_SNAPSHOT_EZX,		/* .ezx snapshot (EmuZWin) */
+
 } libspectrum_id_t;
 
 /* And 'classes' of file */

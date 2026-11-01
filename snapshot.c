@@ -94,6 +94,9 @@ libspectrum_snap_read( libspectrum_snap *snap, const libspectrum_byte *buffer,
   case LIBSPECTRUM_ID_SNAPSHOT_PLUSD:
     error = libspectrum_plusd_read( snap, buffer, length ); break;
 
+  case LIBSPECTRUM_ID_SNAPSHOT_EZX:
+    error = libspectrum_ezx_read( snap, buffer, length ); break;
+
   case LIBSPECTRUM_ID_SNAPSHOT_SNA:
     error = internal_sna_read( snap, buffer, length ); break;
 
