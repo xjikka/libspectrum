@@ -31,8 +31,7 @@
 #define LIBSPECTRUM_SNA_HEADER_LENGTH 27
 #define LIBSPECTRUM_SNA_128_HEADER_LENGTH 4
 
-static int identify_machine( const libspectrum_byte *buffer,
-                             size_t buffer_length, libspectrum_snap *snap );
+static int identify_machine( size_t buffer_length, libspectrum_snap *snap );
 static int libspectrum_sna_read_header( const libspectrum_byte *buffer,
 					size_t buffer_length,
 					libspectrum_snap *snap );
@@ -61,7 +60,7 @@ internal_sna_read( libspectrum_snap *snap,
 {
   int error;
 
-  error = identify_machine( buffer, buffer_length, snap );
+  error = identify_machine( buffer_length, snap );
   if( error != LIBSPECTRUM_ERROR_NONE ) return error;
 
   error = libspectrum_sna_read_header( buffer, buffer_length, snap );
@@ -76,23 +75,15 @@ internal_sna_read( libspectrum_snap *snap,
 }
 
 static int
-identify_machine( const libspectrum_byte *buffer, size_t buffer_length,
-                  libspectrum_snap *snap )
+identify_machine( size_t buffer_length, libspectrum_snap *snap )
 {
-  /* XJ: offset of the "TR-DOS ROM paged" byte in a 128K SNA */
-  const size_t trdos_offset = LIBSPECTRUM_SNA_HEADER_LENGTH + 0xc000 + 3;
-
   switch( buffer_length ) {
   case 49179:
     libspectrum_snap_set_machine( snap, LIBSPECTRUM_MACHINE_48 );
     break;
   case 131103:
   case 147487:
-    /* XJ: 128K SNA has no machine field; without TR-DOS paged use 128K */
-    if( buffer[ trdos_offset ] )
-      libspectrum_snap_set_machine( snap, LIBSPECTRUM_MACHINE_PENT );
-    else
-      libspectrum_snap_set_machine( snap, LIBSPECTRUM_MACHINE_128 );
+    libspectrum_snap_set_machine( snap, LIBSPECTRUM_MACHINE_PENT );
     break;
   default:
     libspectrum_print_error( LIBSPECTRUM_ERROR_CORRUPT,
@@ -185,7 +176,6 @@ libspectrum_sna_read_data( const libspectrum_byte *buffer,
 
     break;
 
-  case LIBSPECTRUM_MACHINE_128:
   case LIBSPECTRUM_MACHINE_PENT:
     
     for( i=0; i<8; i++ ) {
